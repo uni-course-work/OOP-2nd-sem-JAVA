@@ -4,6 +4,7 @@ public class Greeting {
         System.out.print("What's your name: ");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
+        scanner.close();
         System.out.println("Welcome " + name + "!");
     }
 }
