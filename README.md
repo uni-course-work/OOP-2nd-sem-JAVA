@@ -2,412 +2,798 @@
 This Repository is for Learning OOP with Java.
 I'm aiming to Solve these problem sets during OOP course.
 
-# Problem Sets (Units 2–18)
+# Object-Oriented Programming - Problem Sets & Projects
 
-This document groups the problem sets into three sections as requested: Units 2–7, Units 8–13, and Units 14–18. Each problem description is structured for clarity and challenge while avoiding hints or solution paths.
+## Problem Set 2: Java Foundations
+**Time: 6-8 hours**
 
----
+### Problem 1: Bytecode Detective (Warm-up)
+Write a Java program that prints its own bytecode instructions. Create a simple class with different types of statements (loops, conditionals, method calls) and use `javap -c` to analyze the bytecode. Document what you discover about how Java translates your code.
 
-## Units 2–7
+**Learning**: Understand compilation, JVM, and the layer between source and execution.
 
-### Unit 2: Java Foundations — The Language as a Tool
+### Problem 2: Type Stress Test
+Create a program called `TypeLimits` that:
+- Tests and prints the maximum/minimum values of all primitive types
+- Demonstrates what happens during overflow/underflow
+- Shows precision loss in floating-point arithmetic
+- Implements a calculator that warns users about potential type issues
 
-**Problem 2.1 — Binary Badge**
-- **Goal:** Build a CLI program that converts a decimal ID into binary, hexadecimal, and a custom 6‑bit badge code.
-- **Input/Output:** One numeric ID in, three representations out, with a stable format for automated checking.
-- **Constraints:** No arrays, no collections, no built‑in base conversion helpers.
-- **Edge Cases:** Zero, negatives, extremely large values, and values beyond 6‑bit range.
-- **Success Criteria:** Deterministic output, clean error handling, and consistent formatting across cases.
+**Challenge**: Handle edge cases like `Integer.MAX_VALUE + 1` gracefully.
 
-**Problem 2.2 — You Are the Compiler**
-- **Goal:** Analyze a single line of simplified “Java‑like” code and flag invalid identifiers and literals.
-- **Input/Output:** One line in, a report of invalid tokens and reasons out.
-- **Constraints:** No regex, no external libraries, only manual character processing.
-- **Edge Cases:** Identifiers with illegal starts, keywords used as identifiers, malformed numbers, unterminated strings.
-- **Success Criteria:** Accurate classification without attempts to auto‑correct inputs.
+### Problem 3: Lexer Challenge ⚡
+Build a simple **Java tokenizer** that reads a `.java` file and categorizes every token (keywords, identifiers, literals, operators, comments). Output should look like:
+```
+KEYWORD: public
+KEYWORD: class
+IDENTIFIER: MyClass
+PUNCTUATION: {
+COMMENT: // This is a test
+...
+```
 
-**Problem 2.3 — Interpreter 0.1**
-- **Goal:** Evaluate a single arithmetic expression in the format `a op b`.
-- **Input/Output:** One line in, result or error message out.
-- **Constraints:** No `switch`, no `Math` utilities.
-- **Edge Cases:** Missing operands, invalid operator, division/modulo by zero, non‑numeric values.
-- **Success Criteria:** Clear parsing logic and stable error behavior.
-
-### Unit 3: Methods — Behavior Before Structure
-
-**Problem 3.1 — Command Library**
-- **Goal:** Implement `parseIntSafe`, `isPrime`, `gcd`, and `clamp` plus a strict test harness.
-- **Input/Output:** Tests must show pass/fail outcomes for each method.
-- **Constraints:** At least 12 non‑trivial tests per method; no hard‑coded expected outputs.
-- **Edge Cases:** Boundary values, negatives, zeros, and large inputs.
-- **Success Criteria:** Tests expose subtle bugs and methods remain reusable.
-
-**Problem 3.2 — Autograder Simulator**
-- **Goal:** Compute weighted grades and letter grades using reusable methods.
-- **Input/Output:** Multiple category scores in, numeric and letter grade out.
-- **Constraints:** No duplicated grading logic; grading rules must be changeable via methods.
-- **Edge Cases:** Invalid scores, missing categories, boundary grade cutoffs.
-- **Success Criteria:** Robust validation and clean separation of calculation and I/O.
-
-**Problem 3.3 — Reverse Polish Calculator**
-- **Goal:** Evaluate RPN expressions without arrays, stacks, or collections.
-- **Input/Output:** One line of tokens in, result or explicit error out.
-- **Constraints:** Only methods and primitive variables for intermediate state.
-- **Edge Cases:** Malformed sequences, insufficient operands, extra operands.
-- **Success Criteria:** Correct results for valid input and meaningful rejection of invalid input.
-
-### Unit 4: Classes and Objects — Modeling Reality
-
-**Problem 4.1 — Escape Room Object**
-- **Goal:** Model `Door`, `Key`, and `Room` objects to simulate an escape sequence.
-- **Input/Output:** A text‑based simulation that shows object interactions.
-- **Constraints:** No inheritance; behaviors owned by their objects.
-- **Edge Cases:** Wrong key, locked door opened, missing key scenarios.
-- **Success Criteria:** Object responsibilities are clear and invalid actions are prevented.
-
-**Problem 4.2 — Audio Player**
-- **Goal:** Design `Track`, `Playlist`, and a player that supports play/pause/next/previous.
-- **Input/Output:** A text‑based simulation of playback operations.
-- **Constraints:** State must remain consistent across operations.
-- **Edge Cases:** Empty playlist, repeated next/previous at boundaries.
-- **Success Criteria:** Clean separation of playlist logic and playback state.
-
-**Problem 4.3 — Blackjack Lite**
-- **Goal:** Model a simplified Blackjack round using `Card`, `Deck`, and `Hand`.
-- **Input/Output:** A playable round with clear output of hands and results.
-- **Constraints:** No collections for shuffling; object responsibilities must be distinct.
-- **Edge Cases:** Multiple aces, empty deck, dealer rules.
-- **Success Criteria:** Correct rules and clean object collaboration.
-
-### Unit 5: Encapsulation and Class Design
-
-**Problem 5.1 — Bank Ledger**
-- **Goal:** Implement a `BankAccount` that never exposes its raw balance.
-- **Input/Output:** Deposits/withdrawals in, summaries and logs out.
-- **Constraints:** Invalid operations must be rejected and logged.
-- **Edge Cases:** Negative deposit, overdraft attempts, repeated failures.
-- **Success Criteria:** Strong invariants and no external mutation of balance.
-
-**Problem 5.2 — Temperature Vault**
-- **Goal:** Store only valid temperatures and record rejected values.
-- **Input/Output:** Temperature readings in, statistics out.
-- **Constraints:** No exposure of mutable internal state.
-- **Edge Cases:** Values at range boundaries, repeated invalid inputs.
-- **Success Criteria:** Only safe data persists and rejection tracking is reliable.
-
-**Problem 5.3 — Cheater Detection**
-- **Goal:** Build a `StudentScore` that locks after finalization.
-- **Input/Output:** Score updates in, verified read‑only state out.
-- **Constraints:** Post‑finalization updates must be rejected and logged.
-- **Edge Cases:** Multiple finalize attempts, invalid score changes.
-- **Success Criteria:** No bypass of the finalized state via direct access.
-
-### Unit 6: Constructors and Object Initialization
-
-**Problem 6.1 — Fault‑Proof Device**
-- **Goal:** Ensure a `Device` cannot be created in an invalid state.
-- **Input/Output:** Valid device data in, constructed devices out; invalid data rejected.
-- **Constraints:** Use constructors to enforce all invariants.
-- **Edge Cases:** Missing required fields, malformed firmware version.
-- **Success Criteria:** No invalid instances exist at any point.
-
-**Problem 6.2 — Multiple Worlds**
-- **Goal:** Create a `GameWorld` with default, seed‑based, and file‑based constructors.
-- **Input/Output:** Constructors in, fully initialized worlds out.
-- **Constraints:** No post‑construction “setup” methods allowed.
-- **Edge Cases:** Invalid seed, missing or corrupted file.
-- **Success Criteria:** Consistent internal state across all construction paths.
-
-**Problem 6.3 — Static vs Instance Init**
-- **Goal:** Use static init for shared chessboard metadata and instance init for per‑game pieces.
-- **Input/Output:** Multiple independent games created without shared state corruption.
-- **Constraints:** Clear explanation in comments for static vs instance usage.
-- **Edge Cases:** Multiple instances created in sequence or parallel.
-- **Success Criteria:** Each game is isolated, shared data is stable.
-
-### Unit 7: Static Members and Class‑Level Behavior
-
-**Problem 7.1 — Global Counter**
-- **Goal:** Track total objects created across multiple classes and per‑class counts.
-- **Input/Output:** Object creations in, global and per‑class counts out.
-- **Constraints:** Counters must not reset unintentionally.
-- **Edge Cases:** Rapid object creation, unused objects.
-- **Success Criteria:** Accurate and stable reporting of counts.
-
-**Problem 7.2 — Access Control**
-- **Goal:** Enforce a maximum number of active sessions via static control.
-- **Input/Output:** Session creation attempts in, approvals/rejections out.
-- **Constraints:** No invalid session may exist if the limit is reached.
-- **Edge Cases:** Sessions ending out of order, repeated creation attempts.
-- **Success Criteria:** Limit is respected and behavior remains consistent.
-
-**Problem 7.3 — Design Smell Challenge**
-- **Goal:** Refactor a static‑heavy design to reduce static usage without changing behavior.
-- **Input/Output:** Before/after design summary and unchanged external behavior.
-- **Constraints:** No replacement with global variables or equivalent anti‑patterns.
-- **Edge Cases:** Hidden dependencies and implicit shared state.
-- **Success Criteria:** Clear improvement in design with functional parity.
+**Why uncomfortable**: You're reverse-engineering part of what a compiler does. You'll wrestle with parsing logic, string manipulation, and edge cases (multi-line comments, string literals with special chars).
 
 ---
 
-## Units 8–13
+## Problem Set 3: Methods & Behavior Design
+**Time: 8-10 hours**
 
-### Unit 8: Relationships Between Classes — Object Collaboration
+### Problem 1: Method Signature Puzzle
+Given a set of requirements (e.g., "convert temperature", "validate email", "calculate loan payment"), design method signatures BEFORE implementation. Focus on:
+- Choosing right parameter types
+- Deciding return types
+- Naming conventions
+- When to overload vs. create new methods
 
-**Problem 8.1 — Museum Exhibit**
-- **Goal:** Model `Museum`, `Room`, and `Artifact` with strict composition rules.
-- **Input/Output:** Artifact placement and movement in, valid room states out.
-- **Constraints:** Artifacts cannot exist without a room.
-- **Edge Cases:** Moving artifacts between rooms, empty rooms.
-- **Success Criteria:** Relationship invariants are always preserved.
+Implement 5+ utility methods demonstrating overloading meaningfully.
 
-**Problem 8.2 — Ride‑Share System**
-- **Goal:** Model `Driver`, `Passenger`, and `Ride` with correct association rules.
-- **Input/Output:** Ride creation and completion in, consistent ride states out.
-- **Constraints:** A ride cannot exist without a driver.
-- **Edge Cases:** Passenger cancels, driver unavailable, multiple passengers.
-- **Success Criteria:** No invalid ride state can occur.
+### Problem 2: Calculator with Memory
+Build a **scientific calculator** (command-line) that:
+- Performs basic operations (+, -, *, /, ^, sqrt, log)
+- Maintains memory (M+, M-, MR, MC commands)
+- Supports method chaining: `calc.add(5).multiply(3).sqrt()`
+- Validates all inputs and handles errors
 
-**Problem 8.3 — Campus System**
-- **Goal:** Model `Course`, `Professor`, `Student`, and `Enrollment`.
-- **Input/Output:** Enrollment changes in, consistent cross‑references out.
-- **Constraints:** Enrollment must be explicit and two‑way consistent.
-- **Edge Cases:** Drop/add cycles, professor reassignment.
-- **Success Criteria:** Relationship network stays consistent under change.
+**Twist**: Everything must be methods. No main() spaghetti code.
 
-### Unit 9: Inheritance — Reuse with Caution
+### Problem 3: Polynomial Evaluator ⚡
+Create a program that:
+1. Accepts polynomial coefficients: `3x³ + 2x² - 5x + 7`
+2. Evaluates at any point using **Horner's method**
+3. Finds derivative symbolically
+4. Implements operations: add, subtract, multiply polynomials
 
-**Problem 9.1 — Creature Hierarchy**
-- **Goal:** Build a `Creature` hierarchy that balances shared behavior and specialization.
-- **Input/Output:** Concrete creature behaviors demonstrated through a simulation.
-- **Constraints:** Avoid “god class” design and explain field placement decisions.
-- **Edge Cases:** Overlapping behaviors and conflicting abilities.
-- **Success Criteria:** Clean inheritance with justified structure.
-
-**Problem 9.2 — Billing System**
-- **Goal:** Implement `Plan` subclasses with distinct pricing and limits.
-- **Input/Output:** Usage data in, computed charges out.
-- **Constraints:** Base class must enable extension without edits.
-- **Edge Cases:** Boundary usage, invalid plan data.
-- **Success Criteria:** Consistent billing behavior across all plan types.
-
-**Problem 9.3 — Inheritance Trap**
-- **Goal:** Refactor an earlier design to remove inappropriate inheritance.
-- **Input/Output:** Same external behavior with improved internal structure.
-- **Constraints:** Use composition or other relationships instead of inheritance.
-- **Edge Cases:** Behaviors that previously relied on inheritance shortcuts.
-- **Success Criteria:** Clear rationale and reduced design risk.
-
-### Unit 10: Polymorphism — One Interface, Many Behaviors
-
-**Problem 10.1 — Shape Renderer**
-- **Goal:** Use polymorphism to compute area and render ASCII shapes.
-- **Input/Output:** Mixed shapes in, correct outputs per shape out.
-- **Constraints:** Renderer cannot use type checks or per‑type conditionals.
-- **Edge Cases:** New shapes added without renderer changes.
-- **Success Criteria:** Dynamic dispatch handles all behaviors correctly.
-
-**Problem 10.2 — Payment Gateway**
-- **Goal:** Process multiple payment types through a single interface.
-- **Input/Output:** Payment request in, transaction result out.
-- **Constraints:** No `instanceof` in the gateway.
-- **Edge Cases:** Invalid payment, partial payment data.
-- **Success Criteria:** Clean polymorphic flow and clear error handling.
-
-**Problem 10.3 — Polymorphic Inventory**
-- **Goal:** Store mixed item types and compute totals via polymorphism.
-- **Input/Output:** Items in, receipt and totals out.
-- **Constraints:** Inventory logic must not change to add new item types.
-- **Edge Cases:** Items with special pricing rules.
-- **Success Criteria:** Accurate totals with type‑agnostic processing.
-
-### Unit 11: Abstraction — Designing for Change
-
-**Problem 11.1 — Abstract Engine**
-- **Goal:** Define an abstract `Engine` with stable public behavior.
-- **Input/Output:** Different engine types in, consistent interface behavior out.
-- **Constraints:** Subclasses must provide required implementations.
-- **Edge Cases:** Engines with different performance models.
-- **Success Criteria:** Interchangeable usage without changing client code.
-
-**Problem 11.2 — Workflow Framework**
-- **Goal:** Create a fixed workflow with customizable steps via abstraction.
-- **Input/Output:** Two or more report types in, consistent workflow out.
-- **Constraints:** Workflow order must not be overridable.
-- **Edge Cases:** Missing or partial subclass implementations.
-- **Success Criteria:** Stable process with flexible details.
-
-**Problem 11.3 — Future‑Proof Refactor**
-- **Goal:** Refactor a prior system to be open for extension, closed for modification.
-- **Input/Output:** A new subtype added without edits to existing classes.
-- **Constraints:** No “switch by type” or similar workarounds.
-- **Edge Cases:** Adding a subtype with different behavior.
-- **Success Criteria:** Demonstrated extensibility with no core changes.
-
-### Unit 12: Interfaces — Multiple Inheritance of Behavior
-
-**Problem 12.1 — Capability System**
-- **Goal:** Model orthogonal capabilities using interfaces and real behaviors.
-- **Input/Output:** Objects used via different interfaces in different contexts.
-- **Constraints:** Capabilities must be meaningful, not empty method stubs.
-- **Edge Cases:** Objects with multiple capabilities used independently.
-- **Success Criteria:** Clean separation of cross‑cutting behaviors.
-
-**Problem 12.2 — Event Plugin Framework**
-- **Goal:** Build a plugin system where the host is unaware of plugin types.
-- **Input/Output:** Plugins in, host executes common contract out.
-- **Constraints:** No modifications to host required for new plugins.
-- **Edge Cases:** Plugin failure or misconfiguration.
-- **Success Criteria:** True contract‑based extension.
-
-**Problem 12.3 — Multiple Contracts**
-- **Goal:** Design a class that satisfies three interfaces with real responsibilities.
-- **Input/Output:** Use the class through each interface independently.
-- **Constraints:** Avoid “god object” sprawl.
-- **Edge Cases:** Conflicting interface expectations.
-- **Success Criteria:** Cohesive design with distinct behaviors.
-
-### Unit 13: Packages and the Java Object Model
-
-**Problem 13.1 — Package Split**
-- **Goal:** Refactor a project into `model`, `service`, and `ui` packages.
-- **Input/Output:** Clean package boundaries with minimal public surface.
-- **Constraints:** Use package‑private access for internal helpers.
-- **Edge Cases:** External code trying to access hidden internals.
-- **Success Criteria:** Enforced encapsulation via package design.
-
-**Problem 13.2 — Equality Rules**
-- **Goal:** Implement `equals`, `hashCode`, and `toString` correctly for three classes.
-- **Input/Output:** Objects in, correct equality and hash behavior out.
-- **Constraints:** Follow Java equality contracts.
-- **Edge Cases:** Nulls, self‑comparison, differing field values.
-- **Success Criteria:** Consistent behavior in hashed collections.
-
-**Problem 13.3 — Hierarchy Test**
-- **Goal:** Demonstrate the Java object model across a multi‑level hierarchy.
-- **Input/Output:** Tests that show `Object` methods and overrides in action.
-- **Constraints:** No frameworks; demonstrate behavior explicitly.
-- **Edge Cases:** Default vs overridden method behavior.
-- **Success Criteria:** Clear understanding of `Object` in the type system.
+**Why uncomfortable**: Heavy method decomposition. You'll need separate methods for parsing, evaluation, calculus operations. Forces you to think: "What behavior belongs where?"
 
 ---
 
-## Units 14–18
+## Problem Set 4: Classes & Objects - Modeling Reality
+**Time: 10-12 hours**
 
-### Unit 14: Exception Handling — Designing for Failure
+### Problem 1: Object Lifecycle Tracker
+Create a `Person` class that:
+- Tracks total people created (use counter)
+- Assigns unique ID to each person
+- Prints message on object creation
+- Override `finalize()` to print destruction message
 
-**Problem 14.1 — Input Validator**
-- **Goal:** Continuously prompt until valid input is received without crashing.
-- **Input/Output:** User input in, validated output or error messages out.
-- **Constraints:** Distinct messages for different error categories.
-- **Edge Cases:** Empty input, wrong type, boundary values.
-- **Success Criteria:** Resilient loop and clear error feedback.
+Create/destroy hundreds of objects and observe lifecycle behavior.
 
-**Problem 14.2 — Custom Exceptions**
-- **Goal:** Define and use custom exceptions in a `BankAccount` system.
-- **Input/Output:** Invalid operations in, explicit exception types out.
-- **Constraints:** Exceptions should be intentional and documented.
-- **Edge Cases:** Multiple failures in sequence, recovery handling.
-- **Success Criteria:** Meaningful exception flow and clean handling.
+### Problem 2: Bank Account Simulator
+Model a banking system with:
+- `Account` class (balance, accountNumber, holder)
+- Methods: deposit, withdraw, transfer, getStatement
+- Interest calculation
+- Transaction history (last 10 transactions)
 
-**Problem 14.3 — File Robustness**
-- **Goal:** Differentiate missing file, bad data, and unexpected failures.
-- **Input/Output:** File path in, classified error or parsed result out.
-- **Constraints:** No silent failures; clear user‑facing messages.
-- **Edge Cases:** Partial data, corrupted content.
-- **Success Criteria:** Correct classification and graceful exit.
+**Key**: Each method should update object state meaningfully. Demonstrate creating multiple accounts and transferring between them.
 
-### Unit 15: Generics and Collections — Reusable Abstractions
+### Problem 3: Card Deck System ⚡
+Build a complete **playing card simulation**:
+- `Card` class (suit, rank, comparing cards)
+- `Deck` class (52 cards, shuffle, draw, remaining count)
+- `Hand` class (for poker/blackjack)
+- Implement shuffle algorithm (Fisher-Yates)
+- Calculate poker hand rankings
 
-**Problem 15.1 — Generic Box**
-- **Goal:** Implement a reusable generic container with safe operations.
-- **Input/Output:** Values in, type‑safe retrieval out.
-- **Constraints:** No unsafe casts or suppressed warnings.
-- **Edge Cases:** Box swapping with different types.
-- **Success Criteria:** Clean generic design and safe usage.
+Then simulate 10,000 hands of poker and output statistics on hand frequencies.
 
-**Problem 15.2 — Library Index**
-- **Goal:** Index books by multiple fields using collections.
-- **Input/Output:** Books and updates in, search results out.
-- **Constraints:** Indexes must remain consistent across updates.
-- **Edge Cases:** Duplicate fields, removals, reindexing.
-- **Success Criteria:** Reliable search and maintenance of indices.
+**Why uncomfortable**: Multiple classes working together, algorithms, probability verification. You'll struggle with object interactions before formally learning relationships.
 
-**Problem 15.3 — Mini Search Engine**
-- **Goal:** Index documents and return top‑K results for queries.
-- **Input/Output:** Documents in, ranked results out.
-- **Constraints:** Deterministic tie handling; no external libraries.
-- **Edge Cases:** Empty query, unseen words, duplicate documents.
-- **Success Criteria:** Stable ranking and reusable index.
+---
 
-### Unit 16: File Handling and Object Persistence
+## Problem Set 5: Encapsulation & Defensive Design
+**Time: 8-10 hours**
 
-**Problem 16.1 — Note Vault**
-- **Goal:** Persist notes with timestamps and restore them safely.
-- **Input/Output:** Notes in, file saved and reloaded out.
-- **Constraints:** Must tolerate missing or corrupted files.
-- **Edge Cases:** Empty file, partial write, malformed timestamps.
-- **Success Criteria:** No crashes and no data loss.
+### Problem 1: Date Class (Safe)
+Create an immutable `Date` class:
+- Private day, month, year
+- Validation in constructor
+- Getters only (no setters)
+- Methods: `addDays()`, `daysBetween()`, `isLeapYear()`
+- Prevent invalid dates (Feb 30, etc.)
 
-**Problem 16.2 — Object Save System**
-- **Goal:** Serialize and restore nested object structures correctly.
-- **Input/Output:** Object graph in, identical object graph out.
-- **Constraints:** No manual re‑initialization after load.
-- **Edge Cases:** Version changes documented, missing data.
-- **Success Criteria:** Full fidelity restore with clear assumptions.
+Test with edge cases and document why immutability matters.
 
-**Problem 16.3 — Rollback Mechanism**
-- **Goal:** Implement safe saves with automatic rollback on failure.
-- **Input/Output:** Save attempts in, verified stable state out.
-- **Constraints:** Must restore last known good state.
-- **Edge Cases:** Interrupted save, corrupted new data.
-- **Success Criteria:** Reliable persistence under failure.
+### Problem 2: Password Manager
+Design a `SecurePassword` class that:
+- Stores passwords encrypted (simple XOR cipher is fine)
+- Never exposes raw password via getters
+- Implements `verify(String attempt)` method
+- Enforces strength requirements (length, complexity)
+- Auto-locks after 3 failed attempts
 
-### Unit 17: GUI Programming and Event‑Driven Thinking
+**Learning**: Data hiding isn't paranoia—it's protection.
 
-**Problem 17.1 — Form with Validation**
-- **Goal:** Build a GUI form with real‑time validation and clear feedback.
-- **Input/Output:** User actions in, validation state out.
-- **Constraints:** No submission allowed until all fields are valid.
-- **Edge Cases:** Rapid changes, invalid to valid transitions.
-- **Success Criteria:** Responsive UI with correct validation logic.
+### Problem 3: Library Management System ⚡
+Build a **library system** with proper encapsulation:
 
-**Problem 17.2 — Event‑Driven Timer**
-- **Goal:** Implement a GUI timer with start/stop/reset and stable updates.
-- **Input/Output:** User actions in, display updates out.
-- **Constraints:** No duplicate timers or UI freezes.
-- **Edge Cases:** Rapid start/stop, repeated resets.
-- **Success Criteria:** Correct timekeeping and event handling.
+**Classes**:
+- `Book` (title, ISBN, author, status, dueDate)
+- `Member` (ID, name, borrowedBooks, fines)
+- `Library` (books collection, members, transactions)
 
-**Problem 17.3 — Paint Lite**
-- **Goal:** Create a drawing app with shapes, color selection, and persistence on repaint.
-- **Input/Output:** Mouse actions in, consistent drawings out.
-- **Constraints:** Render must survive window refresh.
-- **Edge Cases:** Fast dragging, multiple shapes, overlapping drawings.
-- **Success Criteria:** Smooth interaction and stable rendering.
+**Features**:
+- Issue/return books (update status, set due dates)
+- Calculate late fines (₹10/day after 14 days)
+- Search books by title/author
+- Member borrowing limit (max 3 books)
+- Generate member report
 
-### Unit 18: Integration, Projects, and Professional Practice
+**Why uncomfortable**: Real-world business rules. You must prevent invalid states (issuing borrowed books, returning books not issued, etc.) purely through encapsulation—no public fields allowed.
 
-**Problem 18.1 — System Merge**
-- **Goal:** Integrate at least three earlier components into one coherent app.
-- **Input/Output:** Unified system in, stable UI + persistence out.
-- **Constraints:** Resolve design conflicts without breaking features.
-- **Edge Cases:** Data mismatch between components.
-- **Success Criteria:** Clean integration with documented tradeoffs.
+---
 
-**Problem 18.2 — Design Critique**
-- **Goal:** Identify five design flaws and fix two with justification.
-- **Input/Output:** Issues list and refactored code out.
-- **Constraints:** Fixes must not introduce regressions.
-- **Edge Cases:** Hidden coupling, unexpected dependencies.
-- **Success Criteria:** Improved design with preserved behavior.
+## Problem Set 6: Constructors & Initialization
+**Time: 6-8 hours**
 
-**Problem 18.3 — Presentation Simulation**
-- **Goal:** Deliver a written two‑minute technical presentation and demo script.
-- **Input/Output:** Presentation text and demo flow out.
-- **Constraints:** Include a tradeoff and a design decision.
-- **Edge Cases:** Avoid vague claims; be concrete and testable.
-- **Success Criteria:** Clear, professional communication of the system.
+### Problem 1: Constructor Chaining Practice
+Create a `Rectangle` class with multiple constructors:
+- Default (1x1 square)
+- Single parameter (square of size n)
+- Two parameters (width, height)
+- Copy constructor
+- Constructor taking another shape and converting
+
+Demonstrate chaining using `this()`.
+
+### Problem 2: Object Factory
+Build an `Employee` class with:
+- Private constructor
+- Static factory methods: `createFullTime()`, `createPartTime()`, `createIntern()`
+- Each type has different validation rules
+- Static counter for employee IDs
+
+**Learning**: Constructors aren't the only way to create objects.
+
+### Problem 3: Complex Number Library ⚡
+Create a **complex number** class (`a + bi`):
+- Multiple constructors (polar form, cartesian, copy)
+- Static factory methods: `fromPolar(r, θ)`, `fromString("3+4i")`
+- Operations: add, subtract, multiply, divide
+- Methods: magnitude, phase, conjugate
+- Parse complex numbers from strings with validation
+
+Then build a **complex calculator** REPL that evaluates expressions like:
+```
+> (3+4i) + (1-2i)
+4+2i
+> (2+3i) * (1+1i)
+-1+5i
+```
+
+**Why uncomfortable**: Initialization is tricky (polar vs cartesian), parsing is hard, and you need bulletproof validation. Many edge cases.
+
+---
+
+## Problem Set 7: Static Members & Class-Level Logic
+**Time: 6-8 hours**
+
+### Problem 1: Singleton Pattern
+Implement a `DatabaseConnection` singleton:
+- Private constructor
+- Static instance
+- `getInstance()` method
+- Connection counting
+- Prevent multiple instances
+
+Demonstrate thread-safety issues by trying to break it.
+
+### Problem 2: Utility Class Design
+Create a `MathUtils` class with static methods:
+- `gcd(a, b)`, `lcm(a, b)`
+- `isPrime(n)`, `primeFactors(n)`
+- `fibonacci(n)` (iterative and recursive)
+- `factorial(n)` with memoization
+
+Private constructor to prevent instantiation.
+
+### Problem 3: Student Grade System ⚡
+Design a grade management system:
+
+**Classes**:
+- `Student` (name, rollNo, grades Map)
+- `Subject` (code, name, credits, classAverage - static)
+- `GradeBook` (all students, static methods for analytics)
+
+**Features**:
+- Add students and grades
+- Calculate individual GPA
+- Calculate class average per subject (static)
+- Find topper, class rank
+- Generate transcript
+
+**Key challenge**: Mix instance and static appropriately. Class averages are static (apply to all), but individual grades are instance-level.
+
+**Why uncomfortable**: You'll be tempted to make everything static or everything instance. Finding the right balance is the lesson.
+
+---
+
+## Problem Set 8: Object Relationships & Collaboration
+**Time: 12-15 hours**
+
+### Problem 1: University Model
+Design classes with proper relationships:
+- `University` → `Department` (composition)
+- `Department` → `Course` (aggregation)
+- `Professor` → `Course` (association)
+- `Student` → `Course` (enrollment - many-to-many)
+
+Implement: enroll students, assign professors, generate department reports.
+
+### Problem 2: E-Commerce Order System
+Model an ordering system:
+- `Customer` has many `Order`s (aggregation)
+- `Order` has many `OrderItem`s (composition)
+- `OrderItem` references `Product` (association)
+- `ShoppingCart` temporarily holds items
+
+Implement: add to cart, place order, calculate total, apply discounts, track order status.
+
+### Problem 3: Hospital Management System ⚡
+Build a **hospital system** with complex relationships:
+
+**Classes**:
+- `Patient` (id, name, age, medicalHistory, appointments)
+- `Doctor` (id, name, specialization, availableSlots, patients)
+- `Appointment` (patient, doctor, date, time, status, diagnosis)
+- `Department` (name, doctors list)
+- `Hospital` (departments, patients, appointments registry)
+- `Prescription` (medicines list, dosage, duration)
+
+**Relationships**:
+- Hospital HAS departments (composition)
+- Department HAS doctors (aggregation)
+- Doctor HAS MANY patients (association)
+- Appointment TIES patient+doctor (association)
+- Patient HAS medical history (composition)
+
+**Features**:
+- Book appointment (check doctor availability)
+- View patient history
+- Assign doctors to departments
+- Generate department-wise patient reports
+- Cancel/reschedule appointments
+- Issue prescriptions
+
+**Why uncomfortable**: Real-world complexity. Multiple interacting objects, bidirectional relationships, state management across objects, and business logic spanning classes.
+
+---
+
+## Problem Set 9: Inheritance - Selective Reuse
+**Time: 10-12 hours**
+
+### Problem 1: Shape Hierarchy
+Create inheritance chain:
+```
+Shape (abstract area(), perimeter())
+  ├── Circle
+  ├── Rectangle
+  │     └── Square
+  └── Triangle
+```
+
+Add: `draw()` method, `resize(factor)`, comparison by area.
+
+### Problem 2: Employee Hierarchy
+```
+Employee (base class)
+  ├── FullTimeEmployee (salary, benefits)
+  ├── PartTimeEmployee (hourlyRate, hoursWorked)
+  └── Contractor (projectRate, projectsCompleted)
+```
+
+Implement: `calculatePay()`, `grantBonus()`, `generatePaySlip()`.
+
+### Problem 3: Vehicle Rental System ⚡
+Build a **rental management system**:
+
+**Hierarchy**:
+```
+Vehicle (abstract)
+  ├── Car (sedan/SUV variants)
+  ├── Bike (geared/non-geared)
+  └── Truck (capacity-based pricing)
+```
+
+**Additional Classes**:
+- `Customer` (license, rental history)
+- `RentalTransaction` (vehicle, customer, dates, cost)
+- `RentalAgency` (fleet management)
+
+**Features**:
+- Dynamic pricing based on vehicle type and rental duration
+- Availability tracking
+- Late return penalties
+- Mileage-based charges for cars
+- Generate rental invoice
+- Maintenance tracking (vehicles need service after X km)
+
+**Challenge**: Use inheritance for vehicle types but avoid over-inheritance. Some behavior should be in interfaces (later), some in base class, some specific to subclass.
+
+**Why uncomfortable**: You'll struggle with: "Should this be in base class or subclass?" Forces proper use of `super`, method overriding, and protected access.
+
+---
+
+## Problem Set 10: Polymorphism - One Interface, Many Forms
+**Time: 10-12 hours**
+
+### Problem 1: Polymorphic Collections
+Create a `Shape[]` array holding different shapes. Iterate and call `area()`, `draw()` polymorphically. Demonstrate:
+- Upcasting and downcasting
+- `instanceof` checks
+- Runtime type identification
+
+### Problem 2: Payment Processing
+```
+PaymentMethod (interface or abstract)
+  ├── CreditCard (validation, processing fee)
+  ├── DebitCard (balance check)
+  ├── UPI (instant transfer)
+  └── Cash (change calculation)
+```
+
+Process payments polymorphically. Show compile-time vs runtime binding.
+
+### Problem 3: Media Player System ⚡
+Build a **universal media player**:
+
+**Hierarchy**:
+```
+Media (abstract)
+  ├── Audio
+  │     ├── MP3
+  │     ├── WAV
+  │     └── FLAC
+  ├── Video
+  │     ├── MP4
+  │     ├── AVI
+  │     └── MKV
+  └── Document
+        ├── PDF
+        └── EPUB
+```
+
+**Classes**:
+- `MediaPlayer` (polymorphic playback)
+- `Playlist` (holds Media objects)
+- `MediaLibrary` (search, filter, organize)
+
+**Features**:
+- Play any media type (polymorphically calls `play()`)
+- Each type has specific behavior (MP3: shows bitrate, MP4: resolution, PDF: page count)
+- Playlist management (add, remove, shuffle, repeat)
+- Search by type, duration, size
+- Format conversion (MP3→WAV, MP4→AVI) - demonstrate casting
+
+**Why uncomfortable**: Deep polymorphism. Arrays/collections of base type holding subclass objects. Dynamic dispatch in action. You'll implement method overriding extensively and see the power (and confusion) of runtime binding.
+
+---
+
+## Problem Set 11: Abstraction - Designing for Change
+**Time: 8-10 hours**
+
+### Problem 1: Template Method Pattern
+Create abstract `GameTemplate` class:
+- `initialize()`, `startPlay()`, `endPlay()` (abstract)
+- `play()` method (final, calls above in sequence)
+
+Implement: `Chess`, `Cricket`, `VideoGame` subclasses.
+
+### Problem 2: Data Structure Abstraction
+Design abstract `DataStructure` with operations:
+- `add()`, `remove()`, `search()`, `size()`
+
+Implement: `Stack`, `Queue`, `PriorityQueue` (use arrays internally).
+
+### Problem 3: File Format Converter ⚡
+Build an **extensible file converter framework**:
+
+**Abstract Design**:
+```
+FileConverter (abstract)
+  - read(filename) : abstract
+  - write(filename, data) : abstract
+  - convert(source, dest) : final template method
+  
+Implementations:
+  ├── CSVConverter (comma-separated)
+  ├── JSONConverter (nested objects)
+  ├── XMLConverter (tags)
+  └── ExcelConverter (cells/sheets)
+```
+
+**Features**:
+- Convert any format to any other (CSV↔JSON↔XML)
+- Template method orchestrates: read→transform→write
+- Each subclass implements parsing/serialization
+- Handle malformed files gracefully
+- Validate data structure during conversion
+
+**Client Program**:
+```java
+Converter c = ConverterFactory.getConverter("csv", "json");
+c.convert("input.csv", "output.json");
+```
+
+**Why uncomfortable**: You're building a framework, not just an app. Abstract classes enforce structure, final methods prevent breaking the workflow. You'll understand how libraries enforce contracts while allowing extension.
+
+---
+
+## Problem Set 12: Interfaces - Contracts Over Inheritance
+**Time: 10-12 hours**
+
+### Problem 1: Multiple Interface Implementation
+Create interfaces: `Flyable`, `Swimmable`, `Walkable`
+
+Implement classes:
+- `Duck` (swims, flies, walks)
+- `Fish` (swims only)
+- `Airplane` (flies only)
+- `Amphibian` (swims, walks)
+
+Demonstrate polymorphism with interface references.
+
+### Problem 2: Comparable & Comparator
+Make `Product` class implementing `Comparable<Product>` (by price).
+Create separate `Comparator` classes to sort by:
+- Name
+- Rating
+- Popularity
+
+Sort and display products using different strategies.
+
+### Problem 3: Plugin-Based Text Editor ⚡
+Build an **extensible text editor** using interfaces:
+
+**Core Interfaces**:
+```java
+interface Plugin {
+    String getName();
+    void execute(TextBuffer buffer);
+}
+
+interface TextTransform extends Plugin {
+    String transform(String text);
+}
+
+interface SyntaxHighlighter extends Plugin {
+    String highlight(String code, String language);
+}
+```
+
+**Implementations**:
+- `UpperCasePlugin`, `LowerCasePlugin`, `ReversePlugin`
+- `WordCountPlugin`, `SpellCheckPlugin`
+- `JavaHighlighter`, `PythonHighlighter`, `MarkdownHighlighter`
+
+**Editor Class**:
+- `TextBuffer` (holds text, supports undo/redo)
+- `PluginManager` (loads plugins, lists available)
+- `Editor` (menu-driven interface)
+
+**Features**:
+- Load text from file
+- Apply any plugin dynamically
+- Chain multiple plugins
+- Add new plugins without modifying editor
+- Save transformed text
+
+**Challenge**: The editor never knows about concrete plugin classes—only interfaces. New plugins are registered at runtime.
+
+**Why uncomfortable**: Interface-driven design. You're building for extension without modification. Multiple inheritance of behavior, not structure.
+
+---
+
+## Problem Set 13: Packages & Organization
+**Time: 6-8 hours**
+
+### Problem 1: Package Structure Design
+Organize a university system into packages:
+```
+edu.university.core (Person, Student, Faculty)
+edu.university.academic (Course, Grade, Transcript)
+edu.university.library (Book, LibraryCard)
+edu.university.utils (DateUtils, Validator)
+```
+
+Demonstrate package-private access, importing, and access control.
+
+### Problem 2: Custom Object Class
+Create `MyObject` class demonstrating:
+- Override `equals()`
+- Override `hashCode()` (consistent with equals)
+- Override `toString()`
+- Override `clone()`
+
+Test with collections (HashSet, HashMap).
+
+### Problem 3: Reflection-Based Object Inspector ⚡
+Build a **Java introspection tool**:
+
+**Features**:
+- Accept any object
+- List all fields (including private)
+- List all methods (including inherited)
+- Show superclass hierarchy
+- Display implemented interfaces
+- Print field values using reflection
+- Invoke methods dynamically
+
+**Example Output**:
+```
+Class: java.util.ArrayList
+Superclass: java.util.AbstractList
+Interfaces: List, RandomAccess, Cloneable, Serializable
+
+Fields:
+  - private int size
+  - private Object[] elementData
+
+Methods:
+  - public boolean add(Object)
+  - public Object get(int)
+  ...
+```
+
+**Why uncomfortable**: Deep dive into Java's Object model and reflection API. You'll understand what the JVM knows about your objects at runtime.
+
+---
+
+## Problem Set 14: Exception Handling - Failing Gracefully
+**Time: 8-10 hours**
+
+### Problem 1: Custom Exception Hierarchy
+Create banking exceptions:
+```
+BankingException
+  ├── InsufficientFundsException
+  ├── InvalidAccountException
+  └── TransactionFailedException
+```
+
+Implement transaction system with proper exception handling and rollback.
+
+### Problem 2: Robust File Parser
+Build a CSV parser that handles:
+- File not found
+- Malformed rows
+- Type conversion errors
+- Empty fields
+- Invalid data
+
+Use try-with-resources, multi-catch blocks, and custom exceptions.
+
+### Problem 3: Resilient Network Client ⚡
+Build a **fault-tolerant HTTP client** (simplified):
+
+**Features**:
+- Connect to URLs and fetch content
+- Handle exceptions:
+    - `MalformedURLException`
+    - `UnknownHostException`
+    - `SocketTimeoutException`
+    - `IOException`
+- Retry mechanism (exponential backoff)
+- Circuit breaker pattern (stop after N failures)
+- Logging all errors with timestamps
+- Graceful degradation (fallback to cached response)
+
+**Custom Exceptions**:
+- `ConnectionTimeoutException`
+- `RetryExhaustedException`
+- `InvalidResponseException`
+
+**Example Usage**:
+```java
+NetworkClient client = new NetworkClient();
+try {
+    String content = client.fetch("https://example.com", 3); // 3 retries
+    System.out.println(content);
+} catch (RetryExhaustedException e) {
+    String cached = client.getCachedResponse();
+}
+```
+
+**Why uncomfortable**: Real-world network programming is full of failures. You'll learn exception handling isn't about avoiding errors—it's about managing them intelligently.
+
+---
+
+## Problem Set 15: Generics & Collections - Type-Safe Reuse
+**Time: 10-12 hours**
+
+### Problem 1: Generic Stack & Queue
+Implement:
+- `GenericStack<T>`
+- `GenericQueue<T>`
+- `GenericPriorityQueue<T extends Comparable<T>>`
+
+Use bounded type parameters, demonstrate with different types.
+
+### Problem 2: Collection Framework Mastery
+Build a student management system using:
+- `ArrayList<Student>` for storage
+- `HashMap<String, Student>` for ID lookup
+- `TreeSet<Student>` for sorted display
+- `LinkedList<Transaction>` for history
+
+Implement search, filter, sort operations.
+
+### Problem 3: Custom Collection Framework ⚡
+Build your own **mini collection library**:
+
+**Interfaces**:
+```java
+interface MyCollection<E> {
+    boolean add(E element);
+    boolean remove(E element);
+    boolean contains(E element);
+    int size();
+    Iterator<E> iterator();
+}
+
+interface MyList<E> extends MyCollection<E> {
+    E get(int index);
+    void add(int index, E element);
+}
+
+interface MySet<E> extends MyCollection<E> {
+    // No duplicate elements
+}
+```
+
+**Implementations**:
+- `MyArrayList<E>` (dynamic array)
+- `MyLinkedList<E>` (doubly linked)
+- `MyHashSet<E>` (hashtable-based)
+- `MyTreeSet<E extends Comparable<E>>` (binary search tree)
+
+**Features**:
+- Auto-resizing for ArrayList
+- Efficient insertion/deletion for LinkedList
+- O(1) lookup for HashSet (implement hash function)
+- O(log n) operations for TreeSet (BST traversal)
+- Custom iterator for each collection
+- Implement `forEach()` using iterators
+
+**Test Suite**:
+- Performance comparison (add 10k elements)
+- Correctness tests (add, remove, contains)
+- Demonstrate generics with different types
+
+**Why uncomfortable**: You're reimplementing Java's collection framework. Deep understanding of data structures, generics, and performance trade-offs required. This is where OOP meets algorithms.
+
+---
+
+## Problem Set 16: File Handling & Persistence
+**Time: 8-10 hours**
+
+### Problem 1: Log File Analyzer
+Read server logs, parse entries, generate statistics:
+- Most frequent errors
+- Response time distribution
+- Traffic patterns by hour
+
+Use BufferedReader, streams, exception handling.
+
+### Problem 2: Configuration Manager
+Build a `.properties` file handler:
+- Read key-value pairs
+- Support comments and sections
+- Type-safe getters (getInt, getString, getBoolean)
+- Write updated config back
+
+### Problem 3: Object Database System ⚡
+Build a **persistent object store** using serialization:
+
+**Core Classes**:
+- `ObjectDB<T extends Serializable>` (generic database)
+- `Index<K, V>` (for fast lookups)
+- `Transaction` (ACID properties)
+
+**Features**:
+- Store any serializable object to file
+- Retrieve by ID or query
+- Update and delete operations
+- Index on specific fields (e.g., index Student by rollNo)
+- Transaction support (commit/rollback)
+- Batch operations (import/export)
+- Compaction (remove deleted records)
+
+**Example Usage**:
+```java
+ObjectDB<Student> db = new ObjectDB<>("students.db");
+db.createIndex("rollNo");
+
+db.insert(new Student("John", "S001", 3.8));
+Student s = db.findByIndex("rollNo", "S001");
+db.update("S001", updatedStudent);
+db.delete("S001");
+```
+
+**Advanced**:
+- Implement simple query language: `db.query("gpa > 3.5 AND year = 3")`
+- Handle concurrent access (basic file locking)
+- Crash recovery (write-ahead log)
+
+**Why uncomfortable**: Real persistence is hard. File I/O, serialization quirks, maintaining indexes, handling corrupted data. You'll appreciate databases afterward.
+
+---
+
+## Problem Set 17: GUI & Event-Driven Programming
+**Time: 12-15 hours**
+
+### Problem 1: Calculator GUI
+Build graphical calculator using Swing:
+- Button grid layout
+- Display panel
+- Event handlers for operations
+- Keyboard support
+
+### Problem 2: Drawing Canvas
+Create paint application:
+- Freehand drawing
+- Shapes (line, rectangle, circle)
+- Color picker
+- Undo/redo
+- Save as image
+
+### Problem 3: Chat Application (GUI) ⚡
+Build a **local network chat app**:
+
+**GUI Components** (Swing):
+- Login window (username input)
+- Main chat window (message area, input field, user list)
+- Private chat windows
+- Emoji picker
+- File sharing dialog
+
+**Features**:
+- Connect multiple clients (localhost sockets)
+- Send/receive messages in real-time
+- Private messaging
+- Group chats
+- File transfer
+- User online/offline status
+- Message history (persist to file)
+- Notifications (system tray)
+
+**Event Handling**:
+- Button clicks (send message)
+- Enter key press (send)
+- Double-click user (private chat)
+- Window close (disconnect gracefully)
+
+**Architecture**:
+- `ChatServer` (handles multiple clients)
+- `ChatClient` (GUI + network logic)
+- `Message` (serializable objects over sockets)
+- Event-driven message processing
+
+**Why uncomfortable**: GUI + networking + threading + event handling all together. Asynchronous message arrival, updating GUI from background threads (SwingUtilities), managing connections. This is real-world complexity.
+
+---
 
 # FINAL PROJECT: Cryptocurrency Trading Simulation Platform
 
