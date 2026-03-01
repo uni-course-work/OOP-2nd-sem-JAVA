@@ -12,5 +12,6 @@ public class Directions {
       Directions = "MOVE RIGHT";
     }
     System.out.println(Directions);
+    scanner.close();
   }
 }

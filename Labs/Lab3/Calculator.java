@@ -19,13 +19,16 @@ public class Calculator {
     } else if ("/".equals(operator)) {
       if (secondNum == 0) {
         System.out.println("MATH ERROR: Division By Zero");
+        scanner.close();
         return;
       }
       result = firstNum / secondNum;
     } else {
       System.out.println("UNKOWN OPERATION " + operator);
+      scanner.close();
       return;
     }
     System.out.printf(" %.2f %s %.2f = %.2f\n", firstNum, operator, secondNum, result);
+    scanner.close();
   }
 }
