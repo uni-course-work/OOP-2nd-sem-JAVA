@@ -45,5 +45,6 @@ public class Marks {
         System.out.println("Student no: " + (i + 1) + " with " + (marks) + " marks");
       }
     }
+    scanner.close();
   }
 }

@@ -18,5 +18,6 @@ public class Bill {
       total += price;
     }
     System.out.println("Total Price: " + total);
+    scanner.close();
   }    
 }
