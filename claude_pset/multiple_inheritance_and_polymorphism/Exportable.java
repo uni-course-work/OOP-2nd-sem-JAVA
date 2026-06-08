@@ -1,0 +1,1 @@
+interface Exportable { void export(String format); }
